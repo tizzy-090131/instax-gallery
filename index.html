@@ -12,9 +12,13 @@
     <header class="header">
       <h1>拍立得电子库</h1>
       <div class="btn-group">
+        <button class="glass-btn" id="libListBtn">图库列表</button>
         <button class="glass-btn" id="scanBtn">扫描拍立得</button>
         <button class="glass-btn" id="uploadBtn">上传图片</button>
-        <button class="glass-btn" id="libBtn">新建图库</button>
+      </div>
+      <div class="current-lib-info">
+        当前图库：<span id="currentLibName">默认图库</span>
+        <span id="libTypeBadge" class="badge public">公开</span>
       </div>
     </header>
 
@@ -29,6 +33,60 @@
 
     <input type="file" id="fileInput" accept="image/*" multiple hidden>
   </div>
+
+  <!-- 弹窗：图库列表 & 新建图库 & 输入邀请码 -->
+  <div class="modal-overlay hidden" id="libModal">
+    <div class="modal-box">
+      <h3>图库管理</h3>
+      <div class="modal-tab">
+        <button class="tab-btn active" data-tab="list">我的图库</button>
+        <button class="tab-btn" data-tab="new">新建图库</button>
+        <button class="tab-btn" data-tab="join">邀请码加入</button>
+      </div>
+
+      <div class="tab-panel" id="panel-list">
+        <div id="libListDom"></div>
+      </div>
+
+      <div class="tab-panel hidden" id="panel-new">
+        <input class="modal-input" id="newLibName" placeholder="图库名称">
+        <label class="modal-label">
+          <input type="radio" name="libScope" value="public" checked> 公开图库
+        </label>
+        <label class="modal-label">
+          <input type="radio" name="libScope" value="private"> 私密图库（需要邀请码）
+        </label>
+        <button class="glass-btn modal-confirm" id="createLibBtn">创建</button>
+      </div>
+
+      <div class="tab-panel hidden" id="panel-join">
+        <input class="modal-input" id="inviteCodeInput" placeholder="输入邀请码">
+        <button class="glass-btn modal-confirm" id="joinLibBtn">加入图库</button>
+      </div>
+
+      <button class="glass-btn modal-close" id="closeModal">关闭</button>
+    </div>
+  </div>
+
+  <!-- 弹窗：私密库展示邀请码 -->
+  <div class="modal-overlay hidden" id="inviteModal">
+    <div class="modal-box">
+      <h3>图库邀请码</h3>
+      <p>发给好友，即可一起加入这个私密图库</p>
+      <div class="invite-code" id="inviteCodeShow"></div>
+      <button class="glass-btn" id="copyCodeBtn">复制邀请码</button>
+      <button class="glass-btn modal-close" id="closeInviteModal">关闭</button>
+    </div>
+  </div>
+
   <script src="app.js"></script>
+  <script>
+    // 注册离线缓存（service worker）
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW 注册失败', err));
+      });
+    }
+  </script>
 </body>
 </html>
