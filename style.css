@@ -6,28 +6,49 @@
 }
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f0f4fa, #dce4f2);
+  background: linear-gradient(135deg, #f2f5fb 0%, #dde5f3 55%, #e8e2f2 100%);
   padding: 18px;
+  position: relative;
+  overflow-x: hidden;
+}
+/* 背景柔光光斑 */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: .5;
+  z-index: 0;
+}
+body::before {
+  width: 260px; height: 260px;
+  background: #bcd4ff;
+  top: -80px; left: -60px;
+}
+body::after {
+  width: 240px; height: 240px;
+  background: #ffd9ec;
+  bottom: -80px; right: -60px;
 }
 .container {
   max-width: 750px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
-.header {
-  margin-bottom: 22px;
-}
+.header { margin-bottom: 22px; }
 h1 {
   color: #1f2937;
   font-weight: 700;
   font-size: 28px;
   margin-bottom: 18px;
+  letter-spacing: 1px;
 }
 .btn-group {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
-/* 液态玻璃胶囊按钮 */
 .glass-btn {
   border: none;
   border-radius: 999px;
@@ -41,14 +62,11 @@ h1 {
     0 4px 16px rgba(0, 0, 0, 0.07),
     inset 0 1px 0 rgba(255, 255, 255, 0.75);
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: .2s ease;
 }
 .glass-btn:hover {
   background: rgba(255, 255, 255, 0.62);
   transform: translateY(-1px);
-}
-.glass-btn.tag.active {
-  background: rgba(135, 175, 255, 0.52);
 }
 .category-bar {
   display: flex;
@@ -56,23 +74,47 @@ h1 {
   margin-bottom: 22px;
   flex-wrap: wrap;
 }
+.glass-btn.tag.active {
+  background: rgba(135, 175, 255, 0.55);
+}
 .polaroid-wrap {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   overflow-x: auto;
   padding-bottom: 18px;
+  flex-wrap: wrap;
 }
 .polaroid-card {
   flex: 0 0 auto;
-  width: 164px;
+  width: 168px;
   background: #ffffff;
-  padding: 12px;
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.11);
+  padding: 12px 12px 34px;
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(31, 41, 55, 0.14);
+  transform: rotate(-2deg);
+  transition: .25s ease;
+}
+.polaroid-card:nth-child(even) { transform: rotate(2deg); }
+.polaroid-card:hover {
+  transform: rotate(0) translateY(-4px);
+  box-shadow: 0 16px 32px rgba(31, 41, 55, 0.2);
 }
 .polaroid-card img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
+  display: block;
+}
+.polaroid-card .type-label {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #8a93a6;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.empty-tip {
+  color: #9aa3b5;
+  font-size: 14px;
+  padding: 30px 0;
 }
