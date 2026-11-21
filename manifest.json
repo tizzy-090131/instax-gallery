@@ -1,0 +1,15 @@
+{
+  "name": "拍立得电子库",
+  "short_name": "instax库",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#e8edf5",
+  "theme_color": "#c8d5f0",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3274/3274367.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

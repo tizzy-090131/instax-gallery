@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>拍立得电子库</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>拍立得电子库</h1>
+      <div class="btn-group">
+        <button class="glass-btn" id="scanBtn">扫描拍立得</button>
+        <button class="glass-btn" id="uploadBtn">上传图片</button>
+        <button class="glass-btn" id="libBtn">新建图库</button>
+      </div>
+    </header>
+
+    <section class="category-bar">
+      <button class="glass-btn tag active">全部</button>
+      <button class="glass-btn tag">wide</button>
+      <button class="glass-btn tag">mini</button>
+      <button class="glass-btn tag">square</button>
+    </section>
+
+    <div class="polaroid-wrap" id="polaroidWrap">
+      <!-- 拍立得卡片JS渲染在这里 -->
+    </div>
+
+    <input type="file" id="fileInput" accept="image/*" multiple hidden>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
